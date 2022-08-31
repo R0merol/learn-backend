@@ -41,10 +41,28 @@ const routes = [
     },
   },
   {
+    method: "POST",
+    path: "/login",
+    handler: (request, h) => {
+      const { username, password } = request.payload;
+      return `Welcome ${username}!`;
+    },
+  },
+  {
     method: "*",
     path: "/{any*}",
     handler: (request, h) => {
       return "Halaman tidak ditemukan";
+    },
+  },
+  {
+    method: "POST",
+    path: "/user",
+    handler: (request, h) => {
+      const response = h.response("success");
+      response.type("text/plain");
+      response.header("X-Custom", "some-value");
+      return response;
     },
   },
 ];
